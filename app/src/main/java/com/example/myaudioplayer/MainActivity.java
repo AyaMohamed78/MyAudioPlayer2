@@ -28,52 +28,44 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 1;
-     static ArrayList<MusicFiles> musicFiles ;
-
-
+    static ArrayList<MusicFiles> musicFiles;
+    static boolean shuffleBoolean = false, repeatBoolean = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         permission();
-
     }
 
     private void permission() {
         if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
                     REQUEST_CODE);
-            System.out.println("The text here");
-        }
-        else {
-            System.out.println("The second one ");
-
-            musicFiles= getAllAudio(this );
+        } else {
+            musicFiles = getAllAudio(this);
             initViewPager();
         }
-            }
+    }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
 
         if (requestCode == REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, do your initialization or tasks here
-
-                musicFiles = getAllAudio(this );
+                musicFiles = getAllAudio(this);
                 initViewPager();
             } else {
-                // Permission denied, show a message or handle accordingly
                 Toast.makeText(this, "Permission Denied!", Toast.LENGTH_SHORT).show();
-                // You might want to close the app or disable functionality that requires this permission
+                finish(); // Close the app if permission is denied
             }
         }
     }
 
     private void initViewPager() {
         ViewPager viewPager = findViewById(R.id.viewpager);
-        TabLayout tabLayout =findViewById(R.id.tab_layout);
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
         ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         // Add fragments with titles
@@ -114,10 +106,11 @@ public class MainActivity extends AppCompatActivity {
             return fragmentTitleList.get(position);
         }
     }
-    public static ArrayList<MusicFiles> getAllAudio(Context context){
+
+    public static ArrayList<MusicFiles> getAllAudio(Context context) {
         ArrayList<MusicFiles> tempAudioList = new ArrayList<>();
         Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String[] projection ={
+        String[] projection = {
                 MediaStore.Audio.Media.ALBUM,
                 MediaStore.Audio.Media.TITLE,
                 MediaStore.Audio.Media.DURATION,
@@ -127,28 +120,25 @@ public class MainActivity extends AppCompatActivity {
         Cursor cursor = context.getContentResolver().query(
                 uri,
                 projection,
-                null, // assuming no selection criteria
-                null, // assuming no selection arguments
-                null  // assuming no sorting
+                null,
+                null,
+                null
         );
-        if (cursor !=null){
+        if (cursor != null) {
             while (cursor.moveToNext()) {
-                String album = cursor.getString(0); // column index for album
-                String title = cursor.getString(1); // column index for title
-                String duration = cursor.getString(2); // column index for duration
-                String path = cursor.getString(3); // column index for path
-                String artist = cursor.getString(4); // column index for artist
+                String album = cursor.getString(0);
+                String title = cursor.getString(1);
+                String duration = cursor.getString(2);
+                String path = cursor.getString(3);
+                String artist = cursor.getString(4);
 
                 MusicFiles musicFiles = new MusicFiles(path, title, artist, album, duration);
                 Log.e("Path", path);
                 Log.e("Album", album);
                 tempAudioList.add(musicFiles);
-
             }
             cursor.close();
-
         }
         return tempAudioList;
-
     }
 }

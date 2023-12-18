@@ -105,11 +105,13 @@
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:id="@+id/id_suffle"
-            android:src="@drawable/ic_shuffle_on"
+            android:id="@+id/id_suffle_off"
+            android:src="@drawable/ic_shuffle_off"
             android:layout_centerVertical="true"
             android:layout_alignParentStart="true"
             android:layout_marginStart="32dp"/>
+
+
         <ImageView
             android:layout_width="35dp"
             android:layout_height="35dp"

@@ -6,4 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".SplashScreen">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="751dp"
+        android:layout_height="1454dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/main" />
 </androidx.constraintlayout.widget.ConstraintLayout>
