@@ -120,7 +120,7 @@
         android:id="@+id/textView12"
         android:layout_width="83dp"
         android:layout_height="28dp"
-        android:text="Sign Up"
+        android:text="Sign In"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"
