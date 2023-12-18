@@ -2,6 +2,7 @@ package com.example.myaudioplayer;
 
 import static com.example.myaudioplayer.MainActivity.musicFiles;
 
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
@@ -130,6 +131,12 @@ public class Player extends AppCompatActivity {
         repeatBtn= findViewById(R.id.id_repeat);
         playPauseBtn= findViewById(R.id.play_pause);
         seekBar= findViewById(R.id.seekBar);
+
+    }
+    private void metaData ( Uri uri) {
+        MediaMetadataRetriever retriever = new MediaMetadataRetriever();
+        retriever.setDataSource(uri.toString());
+
 
     }
 }
