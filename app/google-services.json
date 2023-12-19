@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "544673566586",
-    "project_id": "audioplayer-b983e",
-    "storage_bucket": "audioplayer-b983e.appspot.com"
+    "project_number": "988347217732",
+    "project_id": "lyrix-e4c1a",
+    "storage_bucket": "lyrix-e4c1a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:544673566586:android:de78f9ed86d950329690c3",
+        "mobilesdk_app_id": "1:988347217732:android:5beea035106dbc21eb0911",
         "android_client_info": {
           "package_name": "com.example.myaudioplayer"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBnjvfc-zG8OdwX8ud3T0i_67lywJByXnY"
+          "current_key": "AIzaSyDlXQImvY_mks6cm9l0yMHWcvXmD1c4OzU"
         }
       ],
       "services": {

@@ -43,12 +43,11 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyvieHolder>
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if(image != null){
+        if (image != null) {
             Glide.with(mContext).asBitmap()
                     .load(image)
                     .into(holder.album_art);
-        }
-        else{
+        } else {
             Glide.with(mContext)
                     .load(R.drawable.icon)
                     .into(holder.album_art);
@@ -56,10 +55,12 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.MyvieHolder>
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, Player.class) ;
-                intent.putExtra("position",position);
-                mContext.startActivity(intent);
-
+                int clickedPosition = holder.getAdapterPosition();
+                if (clickedPosition != RecyclerView.NO_POSITION) {
+                    Intent intent = new Intent(mContext, Player.class);
+                    intent.putExtra("position", clickedPosition);
+                    mContext.startActivity(intent);
+                }
             }
         });
     }
