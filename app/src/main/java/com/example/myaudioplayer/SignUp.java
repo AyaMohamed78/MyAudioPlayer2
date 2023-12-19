@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +21,7 @@ public class SignUp extends AppCompatActivity {
     Button signUpButton;
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
+    TextView signInText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +31,7 @@ public class SignUp extends AppCompatActivity {
         usernameInput = findViewById(R.id.editTextText3);
         passwordInput = findViewById(R.id.editTextTextPassword3);
         signUpButton = findViewById(R.id.button2);
+        signInText = findViewById(R.id.textView12);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
@@ -53,12 +56,20 @@ public class SignUp extends AppCompatActivity {
                                 // Save user data to Firebase Realtime Database
                                 saveUserData(usernameText, passwordText);
 
-                                startActivity(new Intent(SignUp.this, MainActivity.class));
+                                startActivity(new Intent(SignUp.this, SignIn.class));
                                 finish();
                             } else {
                                 Toast.makeText(SignUp.this, "Registration failed", Toast.LENGTH_SHORT).show();
                             }
                         });
+            }
+        });
+
+        signInText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to SignIn activity
+                startActivity(new Intent(SignUp.this, SignIn.class));
             }
         });
     }
