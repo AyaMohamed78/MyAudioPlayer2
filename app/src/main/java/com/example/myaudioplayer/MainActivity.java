@@ -131,7 +131,6 @@ public class MainActivity extends AppCompatActivity {
                 String duration = cursor.getString(2);
                 String path = cursor.getString(3);
                 String artist = cursor.getString(4);
-
                 MusicFiles musicFiles = new MusicFiles(path, title, artist, album, duration);
                 Log.e("Path", path);
                 Log.e("Album", album);

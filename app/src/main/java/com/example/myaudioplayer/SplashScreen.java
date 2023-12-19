@@ -2,17 +2,30 @@ package com.example.myaudioplayer;
 
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
+import android.os.Handler;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private static final int SPLASH_TIME_OUT = 2000; // 2 seconds
 
-        Intent intent = new Intent(this, HomeActivity.class);
-        startActivity(intent);
-        finish(); // Finish the SplashScreen activity so that the user cannot go back to it
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_splash_screen);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // This method will be executed once the timer is over
+                // Start your app's main activity
+                Intent i = new Intent(SplashScreen.this, SignIn.class);
+                startActivity(i);
+
+                // Close this activity
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
     }
 }
