@@ -179,6 +179,15 @@
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
             android:layout_alignParentBottom="true" />
+        <ImageButton
+            android:id="@+id/btnShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_share"
+            android:contentDescription="@string/share_button_description"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"/>
+
 
 
     </RelativeLayout>

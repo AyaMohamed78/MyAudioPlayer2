@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Email_text">البريد الالكتروني</string>
+    <string name="password_text">كلمة المرور</string>
+    <string name="alreadyhaveanaccount_text"> لديك بالفعل حساب</string>
+    <string name="Donothaveanaccount_text"> ليس لديك حساب</string>
+    <string name="SignIn_text">تسجيل الدخول</string>
+    <string name="SignUp_button">إنشاء حساب</string>
+    <string name="SignUp_text">إنشاء حساب</string>
+    <string name="share_button_description">انشر</string>
+
+</resources>

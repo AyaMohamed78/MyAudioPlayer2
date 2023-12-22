@@ -3,6 +3,7 @@ package com.example.myaudioplayer;
 import static com.example.myaudioplayer.MainActivity.musicFiles;
 import static com.example.myaudioplayer.MainActivity.shuffleBoolean;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
@@ -11,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -25,6 +27,7 @@ import java.util.ArrayList;
 public class Player extends AppCompatActivity {
     TextView song_name, artist_name, duration_played, duration_total;
     ImageView cover_art, nextBtn, prevBtn, backBtn, shuffleBtn, repeatBtn;
+    ImageButton btnShare;
     FloatingActionButton playPauseBtn ;
     SeekBar seekBar ;
     int position =-1;
@@ -46,6 +49,9 @@ public class Player extends AppCompatActivity {
         getInenMethod();
         song_name.setText(listSongs.get(position).getTitle());
         artist_name.setText(listSongs.get(position).getArtist());
+        // Inside your onCreate method, after setting up your other UI elements
+
+
         seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -57,6 +63,9 @@ public class Player extends AppCompatActivity {
                 }
 
             }
+            // Inside your onCreate method, after setting up your other UI elements
+
+
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
@@ -94,16 +103,31 @@ public class Player extends AppCompatActivity {
                 }
             }
         });
-
-
+        ImageButton btnShare = findViewById(R.id.btnShare);
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareSong();
+            }
+        });
     }
+
+    //Implicit intent
+    private void shareSong() {
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Now playing: " + listSongs.get(position).getTitle());
+        shareIntent.putExtra(Intent.EXTRA_TEXT, "Listen to this amazing song: " + listSongs.get(position).getTitle() +
+                " by " + listSongs.get(position).getArtist() + " on MyAudioPlayer app!");
+
+        startActivity(Intent.createChooser(shareIntent, "Share this song via"));
+    }
+    
+
     protected void onResume () {
         playThreadBtn();
         nextThreadBtn();
         prevThreadBtn();
-
-
-
         super.onResume();
     }
 

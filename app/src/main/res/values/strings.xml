@@ -1,5 +1,14 @@
 <resources>
     <string name="app_name">MyAudioPlayer</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Email_text">Email</string>
+    <string name="password_text">Password</string>
+    <string name="SignUp_text">SignUp</string>
+    <string name="alreadyhaveanaccount_text">already have an account</string>
+    <string name="Donothaveanaccount_text">Donot have an account</string>
+    <string name="SignIn_text">SignIn</string>
+    <string name="SignUp_button">SignUp</string>
+    <string name="share_button_description">Share this song</string>
+
 </resources>
