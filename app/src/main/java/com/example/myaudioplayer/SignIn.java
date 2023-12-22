@@ -1,6 +1,8 @@
 package com.example.myaudioplayer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,7 +20,8 @@ public class SignIn extends AppCompatActivity {
     String usernameTextSignIn, passwordTextSignIn;
     Button signInButton;
     FirebaseAuth mAuth;
-    TextView signUpText;
+    TextView signUpText, welcomeTextView;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,8 +32,20 @@ public class SignIn extends AppCompatActivity {
         passwordInputSignIn = findViewById(R.id.password);
         signInButton = findViewById(R.id.button2);
         signUpText = findViewById(R.id.textView177);
+        welcomeTextView = findViewById(R.id.welcomeTextView);
 
         mAuth = FirebaseAuth.getInstance();
+        sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+
+        // Check if the user's email is available in SharedPreferences
+        String userEmail = sharedPreferences.getString("user_email", null);
+        if (userEmail != null) {
+            // Display a welcome message with the user's email
+            welcomeTextView.setText("Welcome, " + userEmail + "!");
+        }
+
+
+
 
         signInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +64,7 @@ public class SignIn extends AppCompatActivity {
                                 // SignIn successful
                                 Toast.makeText(SignIn.this, "SignIn successful", Toast.LENGTH_SHORT).show();
                                 startActivity(new Intent(SignIn.this, MainActivity.class));
+
                                 finish();
                             } else {
                                 // If sign in fails, display a message to the user.

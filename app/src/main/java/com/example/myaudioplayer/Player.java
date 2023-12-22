@@ -122,8 +122,6 @@ public class Player extends AppCompatActivity {
 
         startActivity(Intent.createChooser(shareIntent, "Share this song via"));
     }
-    
-
     protected void onResume () {
         playThreadBtn();
         nextThreadBtn();

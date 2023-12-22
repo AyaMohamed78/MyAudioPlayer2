@@ -1,6 +1,8 @@
 package com.example.myaudioplayer;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -22,6 +24,7 @@ public class SignUp extends AppCompatActivity {
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
     TextView signInText;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +38,7 @@ public class SignUp extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference("users");
+        sharedPreferences = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
         signUpButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,5 +87,10 @@ public class SignUp extends AppCompatActivity {
 
         // Save the User object to the "users" node in Firebase Realtime Database
         mDatabase.child(userId).setValue(userr);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("user_email", username);
+        editor.apply();
     }
+
+
 }
